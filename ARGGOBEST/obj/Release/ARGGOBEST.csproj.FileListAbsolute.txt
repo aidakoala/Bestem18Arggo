@@ -1,0 +1,31 @@
+C:\Visual Studio 2013\Projects\ARGGOBEST\ARGGOBEST\bin\ARGGOBEST.dll.config
+C:\Visual Studio 2013\Projects\ARGGOBEST\ARGGOBEST\bin\ARGGOBEST.dll
+C:\Visual Studio 2013\Projects\ARGGOBEST\ARGGOBEST\bin\ARGGOBEST.XmlSerializers.dll
+C:\Visual Studio 2013\Projects\ARGGOBEST\ARGGOBEST\bin\ARGGOBEST.pdb
+C:\Visual Studio 2013\Projects\ARGGOBEST\ARGGOBEST\obj\Release\ARGGOBEST.dll
+C:\Visual Studio 2013\Projects\ARGGOBEST\ARGGOBEST\obj\Release\ARGGOBEST.pdb
+C:\Visual Studio 2013\Projects\ARGGOBEST\ARGGOBEST\obj\Release\ARGGOBEST.XmlSerializers.dll
+C:\Visual Studio 2013\Projects\ARGGOBEST\ARGGOBEST\obj\Release\ARGGOBEST.csprojResolveAssemblyReference.cache
+C:\Users\Stefi\Desktop\Arggo\ARGGOBEST\ARGGOBEST\bin\ARGGOBEST.dll.config
+C:\Users\Stefi\Desktop\Arggo\ARGGOBEST\ARGGOBEST\bin\ARGGOBEST.dll
+C:\Users\Stefi\Desktop\Arggo\ARGGOBEST\ARGGOBEST\bin\ARGGOBEST.XmlSerializers.dll
+C:\Users\Stefi\Desktop\Arggo\ARGGOBEST\ARGGOBEST\bin\ARGGOBEST.pdb
+C:\Users\Stefi\Desktop\Arggo\ARGGOBEST\ARGGOBEST\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Stefi\Desktop\Arggo\ARGGOBEST\ARGGOBEST\bin\System.Web.Helpers.dll
+C:\Users\Stefi\Desktop\Arggo\ARGGOBEST\ARGGOBEST\bin\System.Web.Razor.dll
+C:\Users\Stefi\Desktop\Arggo\ARGGOBEST\ARGGOBEST\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Stefi\Desktop\Arggo\ARGGOBEST\ARGGOBEST\bin\System.Web.WebPages.dll
+C:\Users\Stefi\Desktop\Arggo\ARGGOBEST\ARGGOBEST\bin\System.Web.WebPages.Razor.dll
+C:\Users\Stefi\Desktop\Arggo\ARGGOBEST\ARGGOBEST\bin\System.Web.Helpers.xml
+C:\Users\Stefi\Desktop\Arggo\ARGGOBEST\ARGGOBEST\bin\System.Web.Razor.xml
+C:\Users\Stefi\Desktop\Arggo\ARGGOBEST\ARGGOBEST\bin\System.Web.WebPages.xml
+C:\Users\Stefi\Desktop\Arggo\ARGGOBEST\ARGGOBEST\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Stefi\Desktop\Arggo\ARGGOBEST\ARGGOBEST\bin\System.Web.WebPages.Razor.xml
+C:\Users\Stefi\Desktop\Arggo\ARGGOBEST\ARGGOBEST\obj\Release\ARGGOBEST.csprojResolveAssemblyReference.cache
+C:\Users\Stefi\Desktop\Arggo\ARGGOBEST\ARGGOBEST\obj\Release\ARGGOBEST.csproj.CoreCompileInputs.cache
+C:\Users\Stefi\Desktop\Arggo\ARGGOBEST\ARGGOBEST\obj\Release\ARGGOBEST.csproj.CopyComplete
+C:\Users\Stefi\Desktop\Arggo\ARGGOBEST\ARGGOBEST\obj\Release\ARGGOBEST.dll
+C:\Users\Stefi\Desktop\Arggo\ARGGOBEST\ARGGOBEST\obj\Release\ARGGOBEST.pdb
+C:\Users\Stefi\Desktop\Arggo\ARGGOBEST\ARGGOBEST\obj\Release\ARGGOBEST.XmlSerializers.dll
+C:\Users\Stefi\Desktop\Arggo\ARGGOBEST\ARGGOBEST\bin\System.Web.Mvc.dll
+C:\Users\Stefi\Desktop\Arggo\ARGGOBEST\ARGGOBEST\bin\System.Web.Mvc.xml

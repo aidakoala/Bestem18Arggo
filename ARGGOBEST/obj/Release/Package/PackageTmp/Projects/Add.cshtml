@@ -1,0 +1,183 @@
+﻿@{
+    // Initialize general page variables
+    var projectNo = Request.QueryString["projectNo"];
+
+    // Credentiale folosite in Web.config pentru accesarea serviciului Web
+    var Username = System.Configuration.ConfigurationManager.AppSettings["Username"];
+    var Password = System.Configuration.ConfigurationManager.AppSettings["Password"];
+
+    // Conectare la serviciu web
+    var clientsService = new ARGGOBEST.WebCustomers.Customers_ARGGOBEST_Service();
+    clientsService.Credentials = new NetworkCredential(Username, Password);
+    var clients = clientsService.ReadMultiple(null, null, 0);
+
+    ARGGOBEST.Projects.Projects_ARGGOBEST_Service wsWebProjects = new ARGGOBEST.Projects.Projects_ARGGOBEST_Service();
+    wsWebProjects.Credentials = new NetworkCredential(Username, Password);
+
+    if (IsPost)
+    {
+        if (Validation.IsValid())
+        {
+            string ProjectName = Request.Form["ProjectName"];
+            string ProjectStatus = Request.Form["ProjectStatus"];
+            string ManagerId = Request.Form["Manager"];
+            string Description = Request.Form["Description"];
+
+            if (ProjectName != "")
+            {
+                var webProject = new ARGGOBEST.Projects.Projects_ARGGOBEST();
+
+                // TO DO obtine lista cu clientii si asociaza link catre pagina client
+
+                webProject.Project_Title = ProjectName;
+                webProject.Project_StatusSpecified = true;
+                webProject.Customer_ID = Request.Form["CustomerId"];
+                webProject.Project_Description = Description;
+                webProject.PM_User_ID = Convert.ToInt32(ManagerId);
+
+                webProject.Project_Status = ARGGOBEST.Projects.Project_Status.New;
+
+                wsWebProjects.Create(ref webProject);
+                Response.Redirect("List");
+            }
+
+
+        }
+
+    }
+
+}
+
+<!DOCTYPE html>
+<html>
+<title>ARGGOBEST</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    body {
+        font-family: "Lato", sans-serif;
+    }
+
+    .sidenav {
+        /*height: 100%;*/
+        width: 0;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        transition: 0.5s;
+        padding-top: 35px;
+    }
+
+    left: 0;
+    /*background-color: #111;*/
+    overflow-x: hidden;
+    .sidenav a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+        transition: 0.3s;
+    }
+
+            .sidenav a:hover {
+                color: #f1f1f1;
+            }
+
+        .sidenav .closebtn {
+            position: initial;
+            top: -initial;
+            right: 1500px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+
+    .screen {
+        .sidenav;
+
+    {
+        padding-top: 15px;
+    }
+
+    .sidenav a {
+        font-size: 18px;
+    }
+
+    }
+
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: initial;
+    }
+
+    th, td {
+        padding: 10px;
+        text-align: justify;
+    }
+</style>
+
+<body>
+
+    <!-- Header -->
+    <h1 hidden>ARGGOBEST</h1><br />
+
+    <!-- Navbar -->
+    <div class="w3-top">
+        <div class="w3-bar w3-black w3-card">
+            <a href="~/Customer/List" class="w3-bar-item w3-button w3-padding-large">Clienti</a>
+            <a href="#" class="w3-bar-item w3-button w3-padding-large">Proiecte</a>
+            <a href="#" class="w3-bar-item w3-button w3-padding-large">Taskuri</a>
+            <a href="#" class="w3-bar-item w3-button w3-padding-large">Raportare</a>
+            <a href="http://arggo.consulting/" class="w3-padding-large  w3-hide-small w3-right"><img src="~/Images/arggo-new.png" /></a>
+        </div>
+    </div>
+
+    <br />
+
+    <!-- The Content Section -->
+    <div class="w3-container w3-content w3-center" style="max-width:800px">
+        <h2 class="w3-wide">Adăugare proiect</h2><br />
+        <form method="post" id="ProjectAdd" name="ProjectAdd">
+            <table style="width:100%">
+                <tr>
+                    <th style="background-color: #C0392B; ">Nume proiect</th>
+                    <th style="background-color: #C0392B; " colspan="3">Description </th>
+                </tr>
+                <tr>
+                    <td><input type="text" size="50" id="ProjectName" name="ProjectName" value="" /></td>
+                    <td><input type="text" size="50" id="Description" name="Description" value="" /></td>
+                </tr>
+                <tr>
+                    <th style="background-color: #C0392B;">Client</th>
+                    <td style="background-color: #C0392B;">Project Manager</td>
+                </tr>
+                <tr>
+                    <td>
+                        <select style="width: 100%">
+                            @foreach (var client in clients)
+                            {
+                                <option value="@client.No">@client.Name</option>
+                            }
+                        </select>
+                    </td>
+                    <td><input type="text" size="50" id="Project Manager" name="Manager" value="" /></td>
+                </tr>
+
+
+            </table>
+            <table style="width:5%">
+                <tr>
+                    <td style="text-align:right"><a href="#" onclick="document.getElementById('ProjectAdd').submit();"><img src="~/Images/ok.png" /></a></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <!-- Footer --><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /> <br />
+    <footer class="w3-container w3-center w3-opacity w3-xlarge">
+        <p class="w3-medium">Powered by <a href="http://arggo.consulting/" target="_blank">ARGGO</a></p>
+    </footer>
+</body>
+</html>s

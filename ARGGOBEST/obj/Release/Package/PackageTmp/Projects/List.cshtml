@@ -1,0 +1,184 @@
+﻿@{
+    // Initialize general page variables
+    var projectID = "";
+    var projectTitle = Request.QueryString["projectTitle"];
+    var customerNo = Request.QueryString["customerNo"];
+    var customerName = Request.QueryString["customerName"];
+
+    // Credentiale folosite in Web.config pentru accesarea serviciului Web
+    var Username = System.Configuration.ConfigurationManager.AppSettings["Username"];
+    var Password = System.Configuration.ConfigurationManager.AppSettings["Password"];
+
+    // Conectare la serviciu web
+    ARGGOBEST.Projects.Projects_ARGGOBEST_Service wsProject = new ARGGOBEST.Projects.Projects_ARGGOBEST_Service();
+    wsProject.Credentials = new NetworkCredential(Username, Password);
+
+    ARGGOBEST.WebCustomers.Customers_ARGGOBEST_Service wsWebCustomer = new ARGGOBEST.WebCustomers.Customers_ARGGOBEST_Service();
+    wsWebCustomer.Credentials = new NetworkCredential(Username, Password);
+
+    ARGGOBEST.WebCustomers.Customers_ARGGOBEST_Filter wsWebCustomerFilterNo = new ARGGOBEST.WebCustomers.Customers_ARGGOBEST_Filter();
+    wsWebCustomerFilterNo.Field = ARGGOBEST.WebCustomers.Customers_ARGGOBEST_Fields.No;
+    wsWebCustomerFilterNo.Criteria = customerNo;
+
+    ARGGOBEST.WebCustomers.Customers_ARGGOBEST_Filter wsWebCustomerFilterName = new ARGGOBEST.WebCustomers.Customers_ARGGOBEST_Filter();
+    wsWebCustomerFilterName.Field = ARGGOBEST.WebCustomers.Customers_ARGGOBEST_Fields.Name;
+    wsWebCustomerFilterName.Criteria = "@*" + customerName + "*";
+
+    ARGGOBEST.WebCustomers.Customers_ARGGOBEST_Filter[] wsWebCustomerFilter = new ARGGOBEST.WebCustomers.Customers_ARGGOBEST_Filter[] { wsWebCustomerFilterNo, wsWebCustomerFilterName };
+    ARGGOBEST.WebCustomers.Customers_ARGGOBEST[] webCustomer = wsWebCustomer.ReadMultiple(wsWebCustomerFilter, null, 0);
+
+    // Creare filtru dupa nume proiect pentru citirea informatiilor din serviciu web
+    ARGGOBEST.Projects.Projects_ARGGOBEST_Filter wsWebProjectFilterID = new ARGGOBEST.Projects.Projects_ARGGOBEST_Filter();
+    wsWebProjectFilterID.Field = ARGGOBEST.Projects.Projects_ARGGOBEST_Fields.Project_ID;
+    wsWebProjectFilterID.Criteria = projectID;
+
+
+    ARGGOBEST.Projects.Projects_ARGGOBEST_Filter wsWebProjectFilterTitle = new ARGGOBEST.Projects.Projects_ARGGOBEST_Filter();
+    wsWebProjectFilterTitle.Field = ARGGOBEST.Projects.Projects_ARGGOBEST_Fields.Project_Title;
+    wsWebProjectFilterTitle.Criteria = "@*" + projectTitle + "*";
+
+    ARGGOBEST.Projects.Projects_ARGGOBEST_Filter[] wsProjectFilter = new ARGGOBEST.Projects.Projects_ARGGOBEST_Filter[] { wsWebProjectFilterID, wsWebProjectFilterTitle};
+    ARGGOBEST.Projects.Projects_ARGGOBEST[] webProject = wsProject.ReadMultiple(wsProjectFilter, null, 0);
+
+}
+
+
+<!DOCTYPE html>
+<html>
+<title>ARGGOBEST</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    body {
+        font-family: "Lato", sans-serif;
+    }
+
+    .sidenav {
+        /*height: 100%;*/
+        width: 0;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        /*background-color: #111;*/
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 35px;
+    }
+
+        .sidenav a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+        }
+
+            .sidenav a:hover {
+                color: #f1f1f1;
+            }
+
+        .sidenav .closebtn {
+            position: initial;
+            top: -initial;
+            right: 1500px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+
+    .screen {
+        .sidenav;
+
+    {
+        padding-top: 15px;
+    }
+
+    .sidenav a {
+        font-size: 18px;
+    }
+
+    }
+
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: initial;
+    }
+
+    th, td {
+        padding: 10px;
+        text-align: justify;
+    }
+</style>
+<body>
+
+    <!-- Header -->
+    <h1 hidden>ARGGOBEST</h1><br />
+
+    <!-- Navbar -->
+    <div class="w3-top">
+        <div class="w3-bar w3-black w3-card">
+            <a href="~/Customer/List" class="w3-bar-item w3-button w3-padding-large">Clienti</a>
+            <a href="~/Projects/List" class="w3-bar-item w3-button w3-padding-large">Proiecte</a>
+            <a href="~/Default" class="w3-bar-item w3-button w3-padding-large">Taskuri</a>
+            <a href="~/Default" class="w3-bar-item w3-button w3-padding-large">Raportare</a>
+            <a href="http://arggo.consulting/" class="w3-padding-large  w3-hide-small w3-right"><img src="~/Images/arggo-new.png" /></a>
+        </div>
+    </div>
+
+    <br />
+
+    <!-- The Content Section -->
+
+    <script language="javascript">
+        function btnCauta_Post() {
+        }
+
+    </script>
+    <script src="~/Scripts/common.js"></script>
+
+    <div class="w3-container w3-content w3-center" style="max-width:800px" id="band">
+        <h2 class="w3-wide">Proiecte</h2><br />
+        <form method="get" id="searchForm">
+            <table>
+                <tr>
+                    <td>
+                        <label for="projectTitle" @if (!ModelState.IsValidField("projectTitle")) { <text> class="error-label" </text> }>Titlu proiect</label>
+                        <input type="text" id="projectTitle" name="projectTitle" value="@projectTitle" />
+                        <input type="submit" value="Filtreaza" onclick="btnCauta_Post()" />
+                    </td>
+                    <td align="right"><a href="~/Projects/Add?"><img src="~/Images/Add-Contact.png" /></a></td>
+                </tr>
+            </table>
+
+            <br />
+            <table style="width:100%">
+                <tr>
+                    <th style="background-color:#00AB6C">Titlu proiect</th>
+                    <th style="background-color:#00AB6C" colspan="1">Client</th>
+                    <th style="background-color:#00AB6C" colspan="1">Manager Proiect</th>
+                    <th style="background-color:#00AB6C" colspan="1">Status</th>
+                </tr>
+                @foreach (ARGGOBEST.Projects.Projects_ARGGOBEST project in webProject)
+                {
+                <tr>
+                    <td><a href="Card?projectID=@HttpUtility.UrlEncode(project.Project_ID.ToString())">@project.Project_Title</a></td>
+                    <td><a href="~/Customer/Card?customerNo=@HttpUtility.UrlEncode(project.Customer_ID)">@project.Customer_ID</a></td>
+                    <td>@project.PM_User_ID</td>
+                    <td>@project.Project_Status</td>
+                </tr>
+                }
+
+            </table>
+        </form>
+        <!-- End Page Content -->
+    </div>
+    <!-- Footer -->
+    <footer class="w3-container w3-center w3-opacity w3-xlarge">
+        <p class="w3-medium">Powered by <a href="http://arggo.consulting/" target="_blank">ARGGO</a></p>
+    </footer>
+</body>
+</html>

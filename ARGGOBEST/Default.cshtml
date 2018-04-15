@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+<html>
+<title>ARGGOBEST</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<body>
+    <style>
+        body {
+            font-family: "Lato", sans-serif;
+        }
+
+        .sidenav {
+            /*height: 100%;*/
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            /*background-color: #111;*/
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 35px;
+        }
+
+            .sidenav a {
+                padding: 8px 8px 8px 32px;
+                text-decoration: none;
+                font-size: 25px;
+                color: #818181;
+                display: block;
+                transition: 0.3s;
+            }
+
+                .sidenav a:hover {
+                    color: #f1f1f1;
+                }
+
+            .sidenav .closebtn {
+                position: initial;
+                top: -initial;
+                right: 1500px;
+                font-size: 36px;
+                margin-left: 50px;
+            }
+
+        .screen {
+            .sidenav;
+
+        {
+            padding-top: 15px;
+        }
+
+        .sidenav a {
+            font-size: 18px;
+        }
+
+        }
+
+        table, th, td {
+            border: 0px solid black;
+            border-collapse: initial;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: justify;
+        }
+    </style>
+
+    <!-- Header -->
+    <h1 hidden>ARGGOBEST</h1><br />
+
+    <!-- Navbar -->
+    <div class="w3-top">
+        <div class="w3-bar w3-black w3-card">
+            <a href="~/Customer/List" class="w3-bar-item w3-button w3-padding-large">Clienti</a>
+            <a href="~/Default" class="w3-bar-item w3-button w3-padding-large">Proiecte</a>
+            <a href="~/Default" class="w3-bar-item w3-button w3-padding-large">Taskuri</a>
+            <a href="~/Default" class="w3-bar-item w3-button w3-padding-large">Raportare</a>
+            <a href="http://arggo.consulting/" class="w3-padding-large  w3-hide-small w3-right"><img src="~/Images/arggo-new.png" /></a>
+        </div>
+    </div>
+
+<br/>
+
+    <!-- The Content Section -->
+    <div class="w3-container w3-content w3-center" style="max-width:800px">
+        <h2 class="w3-wide">ARGGOBEST</h2><br />
+        <table>
+            <tr>
+                <td align="center"><a href="~/Customer/List?"><img src="~/Images/LogoApp.jpg" /></a></td>
+            </tr>
+        </table>
+    </div>
+        <!-- Footer --><br /><br /><br />
+        <footer class="w3-container w3-center w3-opacity w3-xlarge">
+            <p class="w3-medium">Powered by <a href="http://arggo.consulting/" target="_blank">ARGGO</a></p>
+        </footer>
+</body>
+</html>
